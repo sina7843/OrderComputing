@@ -1,0 +1,246 @@
+package ordeer;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class Load extends javax.swing.JPanel {
+    private int percent; 
+    public static String text1="";
+    public static String text2="";
+    public String answer="";
+    public String answer1="";
+    public String answert="";
+    public long point1;
+    public long point2;
+    int flag=0;
+    Thread1 T1;
+    Thread2 T2;
+    JFrame myapp;
+    private Image img=null;
+    private int Width=0;
+    private int Height=0;
+    Point points=new Point();
+    public Load(String text1,String text2,JFrame myapp) {
+        try {
+            img=ImageIO.read(new File("img\\back2.png"));
+        } catch (IOException ex) {}
+        Load.text1=text1;
+        Load.text2=text2;
+        initComponents();
+        btnExit.setFocusPainted(false);btnExit.setOpaque(false);btnExit.setContentAreaFilled(false);btnExit.setBorderPainted(false);
+        T2=new Thread2(this,myapp);
+        this.myapp=myapp;
+        
+    }
+    public Load(String text,JFrame myapp) {
+        try {
+            img=ImageIO.read(new File("img\\back2.png"));
+        } catch (IOException ex) {}
+        Load.text1=text;
+        initComponents();
+        btnExit.setFocusPainted(false);btnExit.setOpaque(false);btnExit.setContentAreaFilled(false);btnExit.setBorderPainted(false);
+        T1=new Thread1(this,myapp);
+        this.myapp=myapp;
+        
+    }
+    @Override
+    public void paintComponent(Graphics g)
+    {
+        this.Width=this.getSize().width;
+        this.Height=this.getSize().height; 
+        super.paintComponent(g);
+        g.drawImage(img, 0, 0,Width,Height, null);
+    }
+    public void start()
+    {
+        T1.start();
+    }
+    public void start1()
+    {
+        T2.start();
+    }
+    public void Loading(int x)
+    {
+        if(T2==null){
+            percent=x;
+            jLabel2.setText(percent+"%");
+            jProgressBar1.setValue(percent);
+            if(percent<96)
+            {
+                jLabel3.setText("PLZ Wait we makeing Data now");
+            }
+            else if(percent<100)
+            {
+                jLabel3.setText("PLZ Wait we Try to Connect");
+            }
+            else
+            {
+                jLabel3.setText("Your Answer Ready");
+                try {
+                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ordeer/Done.png")));
+                    TimeUnit.SECONDS.sleep(3);
+                    this.repaint();
+                    myapp.repaint();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Load.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                jLabel3.setText(answer);
+            }
+            this.repaint();
+            myapp.repaint();
+        }
+        else
+        {
+            if(ComparePan.flag==1){
+                percent=50+x/2;
+                if(flag==0)
+                {
+                    answer1=answer;
+                    point2=point1;
+                }
+                flag=1;
+            }
+            
+            else{percent=x/2;}
+            jLabel2.setText(percent+"%");
+            jProgressBar1.setValue(percent);
+            if(percent<96)
+            {
+                jLabel3.setText("PLZ Wait,we are makeing Data now");
+            }
+            else if(percent<100)
+            {
+                jLabel3.setText("PLZ Wait Internet Conecting");
+            }
+            else
+            {
+                jLabel3.setText("Your Answer is Ready");
+                System.out.println(point1+"\n"+point2);
+                try {
+                    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ordeer/Done.png")));
+                    TimeUnit.SECONDS.sleep(3);
+                    this.repaint();
+                    myapp.repaint();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Load.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if(point1>point2)
+                {
+                    answert="first Code is faster";
+                }
+                else if(point1<point2)
+                {
+                    answert="second Code is faster";
+                }
+                else
+                {
+                    answert="Equal";
+                }
+                jLabel3.setText(answert);
+            }
+            this.repaint();
+            myapp.repaint();
+        }
+    }
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnExit = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ordeer/Loading_icon.gif"))); // NOI18N
+
+        jProgressBar1.setForeground(new java.awt.Color(51, 255, 51));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setToolTipText("");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ordeer/exit.png"))); // NOI18N
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(652, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(628, 628, 628))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(926, 926, 926))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(827, 827, 827))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 397, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        int a=JOptionPane.showConfirmDialog(null,"Are you sure?");  
+        if(a==JOptionPane.YES_OPTION){  
+            myapp.setVisible(false);
+        }   
+    }//GEN-LAST:event_btnExitActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExit;
+    private javax.swing.JLabel jLabel1;
+    private static javax.swing.JLabel jLabel2;
+    private static javax.swing.JLabel jLabel3;
+    private static javax.swing.JProgressBar jProgressBar1;
+    // End of variables declaration//GEN-END:variables
+}
