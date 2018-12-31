@@ -3,11 +3,11 @@ is Programme that you can compute RunTime(order)of java code that just need you 
 
 Start page:
 
-<img alt='Start page of the game' style='display:block; margin:auto;' src='http://uupload.ir/files/60fa_2.png' />
+<img alt='Start page of the game' style='display:block; margin:auto;' src='http://uupload.ir/files/m7a_capture.png' />
 
 singel code:
 
-<img alt='MapBuilder page of the game' style='display:block; margin:auto;' src='http://uupload.ir/files/9f4x_2.png' />
+<img alt='MapBuilder page of the game' style='display:block; margin:auto;' src='http://uupload.ir/files/60fa_2.png' />
 
 Compare code
 <img alt='MapBuilder page of the game' style='display:block; margin:auto;' src='http://uupload.ir/files/9f4x_3.png' />
