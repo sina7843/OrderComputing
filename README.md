@@ -3,7 +3,7 @@ is Programme that you can compute RunTime(order)of java code that just need you 
 
 Start page:
 
-<img alt='Start page of the game' style='display:block; margin:auto;' src='http://uupload.ir/files/m7a_capture.png' />
+<img alt='Start page of the game' style='display:block; margin:auto;' src='http://uupload.ir/files/60fa_2.png' />
 
 singel code:
 
@@ -13,7 +13,7 @@ Compare code
 <img alt='MapBuilder page of the game' style='display:block; margin:auto;' src='http://uupload.ir/files/9f4x_3.png' />
 
 Load page:
-<img alt='Game page' style='display:block; margin:auto;' src='http://uupload.ir/files/9f4x_4.png' />
+<img alt='Game page' style='display:block; margin:auto;' src='http://uupload.ir/files/u58_4.png' />
 
 ## Installation guide
 First, make sure that JDK 8 or higher is installed on your machine, then clone this repository:
