@@ -18,7 +18,7 @@ Load page:
 ## Installation guide
 First, make sure that JDK 8 or higher is installed on your machine, then clone this repository:
 ```
-$ git clone https://github.com/sina7843/lernTrafficRules.git
+$ git clone https://github.com/sina7843/OrderComputing.git
 
 
 ## How to use
